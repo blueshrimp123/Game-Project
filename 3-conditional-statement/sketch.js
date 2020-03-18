@@ -8,18 +8,19 @@ let me;
 function setup() {
   createCanvas(500, 400);
 
+
   //make one avatar called me
   me = new Avatar(width/2, 300, 3);
 
 }
 
 function draw(){
-	background(220);
+	background(221,100,292);
 
   me.drawMe();
   me.moveMe();
 
-  if (frameCount % 25 == 0) {
+  if (frameCount % 20 == 0) {
       let  b = new Ball(width, random(0,height), -3);
       balls.push(b);
       console.log(balls); //print the balls array to the console
@@ -44,9 +45,9 @@ class Avatar {
 	}
 
 	drawMe(){  // draw the running person
-    		stroke("green");
-        strokeWeight(3);
-    		fill("blue");
+    		stroke("blue");
+        strokeWeight(5);
+    		fill("pink");
 		    ellipse(this.x,this.y,20,20);
         line(this.x,this.y, this.x, this.y+40);
         line(this.x, this.y+40, this.x-20, this.y+60);
@@ -63,13 +64,13 @@ class Avatar {
 
     if (keyIsDown(DOWN_ARROW)) { // if you hold the down arrow, move down by speed
         this.y += this.speed;
-    }
+
+        if (keyIsDown(LEFT_ARROW)) { this.x -= this.speed}
+
+        if (keyIsDown(RIGHT_ARROW)) { this.x += this.speed;}
 	}
-
-  die(){
-
-  }
-
+}
+  
 }
 
 
@@ -87,8 +88,8 @@ class Ball {
 	drawBall(){
     	stroke(0);
       strokeWeight(1);
-    	fill("red");
-		  ellipse(this.x,this.y,10,10);
+    	fill(random(0,300),random(0,300),random(0,300));
+		  ellipse(this.x,this.y,random(2),10);
 	}
 
 	//update the location of the ball, so it moves across the screen
@@ -99,9 +100,12 @@ class Ball {
 
 	//if the ball hits the person, change the speed value to negative (send it in the opposite direction)
   	bounceBall(){
-    		if (this.x >= me.x-15 && this.x <= me.x+15 && this.y > me.y-40 && this.y < me.y+40){
+    		if (this.x >= me.x-20 && this.x <= me.x+5 && this.y > me.y-30 && this.y < me.y+40){
       			this.speed = -this.speed;
     		}
   	}
 
 }
+
+
+	
