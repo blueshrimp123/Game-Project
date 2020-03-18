@@ -1,8 +1,10 @@
 //create an empty array called balls
-let balls = [];
+let object = [];
 
 //create a variable to hold your avatar
 let me;
+
+let box;
 
 
 function setup() {
@@ -10,7 +12,7 @@ function setup() {
 
   //make one avatar called me
   me = new Avatar(width/2, 300, 3);
-
+  box = new Goal(5, 100);
 }
 
 function draw(){
@@ -19,20 +21,23 @@ function draw(){
   me.drawMe();
   me.moveMe();
 
+  box.drawBox();
+
   if (frameCount % 25 == 0) {
-      let  b = new Ball(width, random(0,height), -3);
-      balls.push(b);
-      console.log(balls); //print the balls array to the console
+      let  b = new Object(width, random(0,height), -3);
+      object.push(b);
+      console.log(object); //print the balls array to the console
     }
 
 //	draw all the balls in that array
-	for (let i = 0; i < balls.length; i++) {
-	 	      balls[i].drawBall();
-       	  balls[i].moveBall();
-        	balls[i].bounceBall();
+	for (let i = 0; i < object.length; i++) {
+	 	      object[i].drawObject();
+       	  object[i].moveObject();
+          object[i].bounceObject();
 	  }
 
 }
+
 
 //avatar class
 class Avatar {
@@ -44,9 +49,9 @@ class Avatar {
 	}
 
 	drawMe(){  // draw the running person
-    		stroke("green");
+    		stroke("black");
         strokeWeight(3);
-    		fill("blue");
+    		fill("black");
 		    ellipse(this.x,this.y,20,20);
         line(this.x,this.y, this.x, this.y+40);
         line(this.x, this.y+40, this.x-20, this.y+60);
@@ -64,17 +69,39 @@ class Avatar {
     if (keyIsDown(DOWN_ARROW)) { // if you hold the down arrow, move down by speed
         this.y += this.speed;
     }
+
+    if (keyIsDown(LEFT_ARROW)) { // if you hold the down arrow, move down by speed
+        this.x -= this.speed;
+    }
+
+    if (keyIsDown(RIGHT_ARROW)) { // if you hold the down arrow, move down by speed
+        this.x += this.speed;
+      }
 	}
 
   die(){
+
 
   }
 
 }
 
+class Goal {
+
+  constructor(x,y){
+    this.x = x;
+    this.y = y;
+  }
+
+  drawBox(){
+    stroke("red");
+    fill("red");
+    rect(this.x, this.y, 5, 200);
+  }
+}
 
 //ball class from which to create new balls with similar properties.
-class Ball {
+class Object {
 
 	//every ball needs an x value, a y value, and a speed
 	constructor(x,y, speed){
@@ -84,24 +111,29 @@ class Ball {
 	}
 
 	// draw a ball on the screen at x,y
-	drawBall(){
+	drawObject(){
     	stroke(0);
       strokeWeight(1);
-    	fill("red");
-		  ellipse(this.x,this.y,10,10);
+    	fill("yellow");
+		  rect(this.x,this.y,15,2);
 	}
 
 	//update the location of the ball, so it moves across the screen
-	moveBall(){
+	moveObject(){
 		this.x = this.x+ this.speed;
 		this.y = this.y+.5;
 	}
 
 	//if the ball hits the person, change the speed value to negative (send it in the opposite direction)
-  	bounceBall(){
+  	bounceObject(){
     		if (this.x >= me.x-15 && this.x <= me.x+15 && this.y > me.y-40 && this.y < me.y+40){
       			this.speed = -this.speed;
     		}
-  	}
+        if (this.x >= box.x-15 && this.x <= box.x+15 && this.y > box.y-200 && this.y < box.y+200){
+            this.speed = -this.speed;
+        }
+      }
+
+
 
 }
