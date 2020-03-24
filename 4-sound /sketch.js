@@ -8,19 +8,19 @@ let mySound;
 
 function preload() {
   soundFormats('mp3', 'ogg');
-  mySound = loadSound('boing1.mp3');
+  mySound = loadSound('bouncyboing.wav');
 }
 
 function setup() {
   createCanvas(500, 400);
 
   //make one avatar called me
-  me = new Avatar(width/2, 300, 3);
+  me = new Avatar(width/2, 200, 3);
 
 }
 
 function draw(){
-	background(220);
+	background(55);
 
   me.drawMe();
   me.moveMe();
@@ -52,7 +52,7 @@ class Avatar {
 	drawMe(){  // draw the running person
     		stroke("green");
         strokeWeight(3);
-    		fill("blue");
+    		fill("green");
 		    ellipse(this.x,this.y,20,20);
         line(this.x,this.y, this.x, this.y+40);
         line(this.x, this.y+40, this.x-20, this.y+60);
