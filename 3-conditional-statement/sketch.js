@@ -6,6 +6,12 @@ let me;
 
 let box;
 
+function preload() {
+  soundFormats('mp3', 'wav');
+  aSound = loadSound('explosion.mp3')
+  bSound = loadSound('quickclash.wav')
+  cSound = loadSound('vroom.mp3')
+}
 
 function setup() {
   createCanvas(500, 400);
@@ -64,6 +70,8 @@ class Avatar {
 	moveMe(){
     if (keyIsDown(UP_ARROW)) { //if you hold the up arrow, move up by speed
        this.y -= this.speed;
+       cSound.setVolume(0.05);
+       cSound.play();
     }
 
     if (keyIsDown(DOWN_ARROW)) { // if you hold the down arrow, move down by speed
@@ -128,9 +136,13 @@ class Object {
   	bounceObject(){
     		if (this.x >= me.x-15 && this.x <= me.x+15 && this.y > me.y-40 && this.y < me.y+40){
       			this.speed = -this.speed;
+            bSound.setVolume(0.5);
+            bSound.play();
     		}
         if (this.x >= box.x-15 && this.x <= box.x+15 && this.y > box.y-200 && this.y < box.y+200){
             this.speed = -this.speed;
+            aSound.setVolume(0.01);
+            aSound.play();
         }
       }
 

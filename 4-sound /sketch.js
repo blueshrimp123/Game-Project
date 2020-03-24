@@ -7,8 +7,9 @@ let me;
 let mySound;
 
 function preload() {
-  soundFormats('mp3', 'ogg');
+  soundFormats('mp3', 'wav');
   mySound = loadSound('boing1.mp3');
+  theSound = loadSound('clashingsound.wav')
 }
 
 function setup() {
@@ -107,8 +108,8 @@ class Ball {
   	bounceBall(){
     		if (this.x >= me.x-15 && this.x <= me.x+15 && this.y > me.y-40 && this.y < me.y+40){
       			this.speed = -this.speed;
-            mySound.setVolume(0.1);
-            mySound.play();
+            theSound.setVolume(0.1);
+            theSound.play();
     		}
   	}
 
