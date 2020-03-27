@@ -62,14 +62,23 @@ class Avatar {
         line(this.x-10, this.y+25, this.x+10, this.y+35);
 	}
 
-	moveMe(){
+  moveMe(){
     if (keyIsDown(UP_ARROW)) { //if you hold the up arrow, move up by speed
        this.y -= this.speed;
+
     }
 
     if (keyIsDown(DOWN_ARROW)) { // if you hold the down arrow, move down by speed
         this.y += this.speed;
     }
+
+    if (keyIsDown(LEFT_ARROW)) { // if you hold the down arrow, move down by speed
+        this.x -= this.speed;
+    }
+
+    if (keyIsDown(RIGHT_ARROW)) { // if you hold the down arrow, move down by speed
+        this.x += this.speed;
+      }
 	}
 
   die(){
@@ -109,6 +118,7 @@ class Ball {
       			this.speed = -this.speed;
             mySound.setVolume(0.1);
             mySound.play();
+
     		}
   	}
 
