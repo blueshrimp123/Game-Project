@@ -10,7 +10,7 @@ function preload() {
 //
 //   //create an animation from a sequence of numbered images
 //   //pass the first and the last file name and it will try to find the ones in between
-  ghost = loadAnimation('sprites/sprite1.png', 'sprites/sprite7.png');
+  ghost = loadAnimation('sprites/My Drawing-4.sketchpad.png', 'sprites/My Drawing-4.sketchpad (4).png');
 
 }
 
@@ -19,7 +19,7 @@ function setup() {
 }
 
 function draw() {
-  background(200, 255, 255);
+  background(255, 210, 0);
 
   //specify the animation instance and its x,y position
   //animation() will update the animation frame as well
